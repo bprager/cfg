@@ -1,2 +1,0 @@
-# cfg
-my dotfiles
