@@ -45,6 +45,7 @@ EOF
 
 let python_highlight_all=1
 syntax on
+set hlsearch
 
 if has('gui_running')
   set background=dark
