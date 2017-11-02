@@ -195,7 +195,7 @@ case "$OSTYPE" in
   *)        echo "unknown: $OSTYPE" ;;
 esac
 
-# alias config='/usr/bin/git --git-dir=/Users/bernd_prager/.cfg/ --work-tree=/Users/bernd_prager'
+alias config='/usr/bin/git --git-dir=/Users/bernd_prager/.cfg/ --work-tree=/Users/bernd_prager'
 mkdir -p .config-backup
 config checkout
 if [ $? = 0 ]; then
