@@ -66,4 +66,4 @@ set foldenable
 nnoremap <space> za
 let g:SimpylFold_docstring_preview=1
 
-
+au BufEnter /private/tmp/crontab.* setl backupcopy=yes

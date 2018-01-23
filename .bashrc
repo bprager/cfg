@@ -2,6 +2,7 @@
 
 # User specific aliases and functions
 alias vi=nvim
+alias date=gdate
 alias ls="ls -Fa"
 # alias socks="ssh -D 8080 -f -C -q -N -o ServerAliveInterval=10 pragerws@box307.bluehost.com"
 alias socks="ssh -D 8080 -f -C -q -N -o ServerAliveInterval=10 bernd@shell.xshellz.com"
@@ -47,8 +48,8 @@ export LDFLAGS="$LDFLAGS -L/usr/local/lib"
 export PS1="$NM-=[$HI\t$NM][$HI\u$NI@$HI\h $SI\w$NM]=-\n $IN"
 # export CVSROOT=":pserver:bernd@prager.homeip.net:/home/cvs"
 
-export EDITOR=vi
-export CVSEDITOR=vi
+export EDITOR=nvim
+export CVSEDITOR=nvim
 
 # don't put duplicate lines in the history. See bash(1) for more options
 # don't overwrite GNU Midnight Commander's setting of `ignorespace'.
@@ -207,4 +208,6 @@ fi;
 config checkout
 config config status.showUntrackedFiles no
 
+eval "$(pipenv --completion)"
 
+export GOPATH="/Users/bernd_prager/Projects/BerndsRepo/Go"
