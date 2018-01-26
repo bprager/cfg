@@ -196,6 +196,7 @@ case "$OSTYPE" in
   *)        echo "unknown: $OSTYPE" ;;
 esac
 
+# local dotfile configuration
 alias config='/usr/bin/git --git-dir=/Users/bernd_prager/.cfg/ --work-tree=/Users/bernd_prager'
 mkdir -p .config-backup
 config checkout
@@ -208,6 +209,9 @@ fi;
 config checkout
 config config status.showUntrackedFiles no
 
+# pipenv setup
+export PYTHONUSERBASE=`python -m site --user-base`
+export PATH=$PYTHONUSERBASE/bin:$PATH
 eval "$(pipenv --completion)"
 
 export GOPATH="/Users/bernd_prager/Projects/BerndsRepo/Go"
