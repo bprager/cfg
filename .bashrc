@@ -210,7 +210,8 @@ config checkout
 config config status.showUntrackedFiles no
 
 # pipenv setup
-export PYTHONUSERBASE=`python -m site --user-base`
+# export PYTHONUSERBASE=`python -m site --user-base`
+export PYTHONUSERBASE='/opt/local/Library/Frameworks/Python.framework/Versions/Current'
 export PATH=$PYTHONUSERBASE/bin:$PATH
 eval "$(pipenv --completion)"
 
