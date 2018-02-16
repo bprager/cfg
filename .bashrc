@@ -13,7 +13,6 @@ alias prettyjson='python -m json.tool'
 alias crontab="VIM_CRONTAB=true crontab"
 alias sqlplus='rlwrap sqlplus'
 alias sftp='rlwrap sftp'
-alias felix='rlwrap felix.sh'
 alias mvn='rlwrap mvn'
 alias mail='rlwrap mail'
 
@@ -87,7 +86,6 @@ export EC2_CERT=$HOME/.ec/cert-YWZ6XR64RXEXNMDJKYZ7VZRPZTQCGT4G.pem
 export M2_HOME=/opt/local/share/java/maven3
 export M2=$M2_HOME/bin
 export PATH=$JAVA_HOME/bin:$M2_HOME/bin:$PATH
-export FELIX_HOME="/Users/bernd_prager/Projects/felix/main"
 
 export PS1="$NM-=[$HI\t$NM][$HI\u$NI@$HI\h $SI\w$NM]=-\n$IN "
 export CLICOLOR=1
@@ -197,7 +195,7 @@ case "$OSTYPE" in
 esac
 
 # local dotfile configuration
-alias config='/usr/bin/git --git-dir=/Users/bernd_prager/.cfg/ --work-tree=/Users/bernd_prager'
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 mkdir -p .config-backup
 config checkout
 if [ $? = 0 ]; then
@@ -215,4 +213,4 @@ export PYTHONUSERBASE='/opt/local/Library/Frameworks/Python.framework/Versions/C
 export PATH=$PYTHONUSERBASE/bin:$PATH
 eval "$(pipenv --completion)"
 
-export GOPATH="/Users/bernd_prager/Projects/BerndsRepo/Go"
+export GOPATH="$HOME/Projects/BerndsRepo/Go"
