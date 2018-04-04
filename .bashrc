@@ -41,6 +41,9 @@ export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Hom
 export MW_HOME="/usr/share/wls12130"
 export USER_MEM_ARGS="-Xmx1024m -XX:PermSize=1024m"
 
+export LC_ALL=en_US.utf-8
+export LANG=en_US.utf-8
+
 export CFLAGS="-march=native"
 export LDFLAGS="$LDFLAGS -L/usr/local/lib"
 
@@ -182,6 +185,9 @@ source ~/.iterm2_shell_integration.`basename $SHELL`
 
 alias scala="export TERM=xterm-color && scala-2.12"
 
+# if in interactive mode
+if [[ $- == *i* ]]
+then
 case "$OSTYPE" in
   solaris*) echo "SOLARIS" ;;
   darwin*)  # echo "OSX";
@@ -206,6 +212,8 @@ if [ $? = 0 ]; then
 fi;
 config checkout
 config config status.showUntrackedFiles no
+
+fi
 
 # pipenv setup
 # export PYTHONUSERBASE=`python -m site --user-base`

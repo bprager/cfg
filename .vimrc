@@ -66,7 +66,9 @@ set foldenable
 nnoremap <space> za
 let g:SimpylFold_docstring_preview=1
 
+" crontab configuration
 au BufEnter /private/tmp/crontab.* setl backupcopy=yes
+autocmd filetype crontab setlocal nobackup nowritebackup
 
 " Printing
 set printexpr=PrintFile(v:fname_in)
@@ -75,3 +77,4 @@ function PrintFile(fname)
   call delete(a:fname)
   return v:shell_error
 endfunc
+
