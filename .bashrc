@@ -174,9 +174,6 @@ function removeDockerNat () {
 
 export GRADLE_HOME="/opt/local/share/java/gradle"
 
-#load iTerm2 shell integration
-source ~/.iterm2_shell_integration.`basename $SHELL`
-
 alias scala="export TERM=xterm-color && scala-2.12"
 
 # if in interactive mode
@@ -192,8 +189,12 @@ case "$OSTYPE" in
 	then
   		eval "$(docker-machine env)"
 	fi
+	export PYTHONUSERBASE='/opt/local/Library/Frameworks/Python.framework/Versions/Current'
+	#load iTerm2 shell integration
+	source ~/.iterm2_shell_integration.`basename $SHELL`
     ;;
   linux*)   echo "LINUX" ;;
+	export PYTHONUSERBASE=`python -m site --user-base`
   bsd*)     echo "BSD" ;;
   msys*)    echo "WINDOWS" ;;
   *)        echo "unknown: $OSTYPE" ;;
@@ -211,13 +212,9 @@ if [ $? = 0 ]; then
 fi;
 config checkout
 config config status.showUntrackedFiles no
-
 fi
 
 # pipenv setup
-# export PYTHONUSERBASE=`python -m site --user-base`
-export PYTHONUSERBASE='/opt/local/Library/Frameworks/Python.framework/Versions/Current'
 export PATH=$PYTHONUSERBASE/bin:$PATH
 eval "$(pipenv --completion)"
-
 export GOPATH="$HOME/Projects/BerndsRepo/Go"
