@@ -67,3 +67,11 @@ nnoremap <space> za
 let g:SimpylFold_docstring_preview=1
 
 au BufEnter /private/tmp/crontab.* setl backupcopy=yes
+
+" Printing
+set printexpr=PrintFile(v:fname_in)
+function PrintFile(fname)
+  call system("a2ps " . a:fname)
+  call delete(a:fname)
+  return v:shell_error
+endfunc
