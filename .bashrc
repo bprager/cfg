@@ -174,12 +174,6 @@ function removeDockerNat () {
 
 export GRADLE_HOME="/opt/local/share/java/gradle"
 
-# get docker env variables
-if [ "$(docker-machine status | tr '[a-z]' '[A-Z]')" == "RUNNING" ]
-then
-  eval "$(docker-machine env)"
-fi
-
 #load iTerm2 shell integration
 source ~/.iterm2_shell_integration.`basename $SHELL`
 
@@ -191,8 +185,13 @@ then
 case "$OSTYPE" in
   solaris*) echo "SOLARIS" ;;
   darwin*)  # echo "OSX";
-    export CLICOLOR=1;
-    export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD;
+	export CLICOLOR=1;
+	export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD;
+	# get docker env variables
+	if [ "$(docker-machine status | tr '[a-z]' '[A-Z]')" == "RUNNING" ]
+	then
+  		eval "$(docker-machine env)"
+	fi
     ;;
   linux*)   echo "LINUX" ;;
   bsd*)     echo "BSD" ;;
