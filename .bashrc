@@ -50,8 +50,13 @@ export LDFLAGS="$LDFLAGS -L/usr/local/lib"
 export PS1="$NM-=[$HI\t$NM][$HI\u$NI@$HI\h $SI\w$NM]=-\n $IN"
 # export CVSROOT=":pserver:bernd@prager.homeip.net:/home/cvs"
 
-export EDITOR=nvim
-export CVSEDITOR=nvim
+if hash nvim 2>/dev/null; then
+	export EDITOR=nvim
+	export CVSEDITOR=nvim
+else
+	export EDITOR=vim
+	export CVSEDITOR=vim
+fi
 
 # don't put duplicate lines in the history. See bash(1) for more options
 # don't overwrite GNU Midnight Commander's setting of `ignorespace'.
@@ -193,8 +198,9 @@ case "$OSTYPE" in
 	#load iTerm2 shell integration
 	source ~/.iterm2_shell_integration.`basename $SHELL`
     ;;
-  linux*)   echo "LINUX" ;;
+  linux*)   echo "LINUX" ;
 	export PYTHONUSERBASE=`python -m site --user-base`
+	;;
   bsd*)     echo "BSD" ;;
   msys*)    echo "WINDOWS" ;;
   *)        echo "unknown: $OSTYPE" ;;
