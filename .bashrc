@@ -193,8 +193,9 @@ case "$OSTYPE" in
 	#load iTerm2 shell integration
 	source ~/.iterm2_shell_integration.`basename $SHELL`
     ;;
-  linux*)   echo "LINUX" ;;
+  linux*)   echo "LINUX" ;
 	export PYTHONUSERBASE=`python -m site --user-base`
+	;;
   bsd*)     echo "BSD" ;;
   msys*)    echo "WINDOWS" ;;
   *)        echo "unknown: $OSTYPE" ;;
