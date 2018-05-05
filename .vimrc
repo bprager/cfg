@@ -46,6 +46,8 @@ EOF
 let python_highlight_all=1
 syntax on
 set hlsearch
+let g:python_host_prog = '/opt/local/bin/python2.7'
+let g:python3_host_prog = '/opt/local/bin/python3'
 
 if has('gui_running')
   set background=dark
