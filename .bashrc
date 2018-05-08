@@ -95,6 +95,9 @@ export M2_HOME=/opt/local/share/java/maven3
 export M2=$M2_HOME/bin
 export PATH=$JAVA_HOME/bin:$M2_HOME/bin:$PATH
 
+#ansible
+export ANSIBLE_VAULT_PASSWORD_FILE=~/.vault_pass.txt
+
 export PS1="$NM-=[$HI\t$NM][$HI\u$NI@$HI\h $SI\w$NM]=-\n$IN "
 export CLICOLOR=1
 # If this is an xterm set the title to user@host:dir
