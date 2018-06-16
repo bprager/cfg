@@ -52,9 +52,12 @@ EOF
 let python_highlight_all=1
 syntax on
 set hlsearch
-let g:python_host_prog = '/usr/bin/python2.7'
-let g:python3_host_prog = '/usr/bin/python3'
-let g:powerline_pycmd = "py3"
+if !empty(glob("/usr/bin/python2.7"))
+	let g:python_host_prog = '/usr/bin/python2.7'
+endif
+if !empty(glob("/usr/bin/python3"))
+	let g:python3_host_prog = '/usr/bin/python3'
+endif
 let g:airline_solarized_bg='dark'
 
 if has('gui_running')
