@@ -15,11 +15,13 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'vim-scripts/indentpython.vim'
 Bundle 'Valloric/YouCompleteMe'
-Plugin 'scrooloose/syntastic'
+Plugin 'vim-syntastic/syntastic'
 Plugin 'nvie/vim-flake8'
 Plugin 'jnurmine/Zenburn'
 Plugin 'altercation/vim-colors-solarized'
 " Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -32,6 +34,9 @@ endif
 
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 set encoding=utf-8
+
+" switch solarized
+call togglebg#map("<F5>")
 
 "python with virtualenv support
 py << EOF
@@ -46,12 +51,15 @@ EOF
 let python_highlight_all=1
 syntax on
 set hlsearch
-let g:python_host_prog = '/opt/local/bin/python2.7'
-let g:python3_host_prog = '/opt/local/bin/python3'
+let g:python_host_prog = '/usr/bin/python2.7'
+let g:python3_host_prog = '/usr/bin/python3'
+let g:powerline_pycmd = "py3"
+let g:airline_solarized_bg='dark'
 
 if has('gui_running')
   set background=dark
   colorscheme solarized
+  AirlineTheme solarized
 else
   colorscheme zenburn
 endif
