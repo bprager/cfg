@@ -37,7 +37,7 @@ fi
 
 export PATH=$PATH:$HOME/bin
 
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/"
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home"
 export MW_HOME="/usr/share/wls12130"
 export USER_MEM_ARGS="-Xmx1024m -XX:PermSize=1024m"
 
@@ -94,6 +94,9 @@ export EC2_CERT=$HOME/.ec/cert-YWZ6XR64RXEXNMDJKYZ7VZRPZTQCGT4G.pem
 export M2_HOME=/opt/local/share/java/maven3
 export M2=$M2_HOME/bin
 export PATH=$JAVA_HOME/bin:$M2_HOME/bin:$PATH
+
+#ansible
+export ANSIBLE_VAULT_PASSWORD_FILE=~/.vault_pass.txt
 
 export PS1="$NM-=[$HI\t$NM][$HI\u$NI@$HI\h $SI\w$NM]=-\n$IN "
 export CLICOLOR=1
