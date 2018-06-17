@@ -52,11 +52,13 @@ EOF
 let python_highlight_all=1
 syntax on
 set hlsearch
-if !empty(glob("/usr/bin/python2.7"))
-	let g:python_host_prog = '/usr/bin/python2.7'
+let g:pythonLocation = system("which python2")
+if strlen(g:pythonLocation) > 0
+  let g:python_host_prog = g:pythonLocation[:-2]
 endif
-if !empty(glob("/usr/bin/python3"))
-	let g:python3_host_prog = '/usr/bin/python3'
+let g:pythonLocation = system("which python3")
+if strlen(g:pythonLocation) > 0
+  let g:python3_host_prog = g:pythonLocation[:-2]
 endif
 let g:airline_solarized_bg='dark'
 
@@ -91,4 +93,5 @@ function PrintFile(fname)
   call delete(a:fname)
   return v:shell_error
 endfunc
+
 
