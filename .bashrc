@@ -1,7 +1,9 @@
 # .bashrc
 
 # User specific aliases and functions
-alias vi=nvim
+if hash nvim 2>/dev/null; then
+	alias vi=nvim
+fi
 alias date=gdate
 alias ls="ls -Fa"
 # alias socks="ssh -D 8080 -f -C -q -N -o ServerAliveInterval=10 pragerws@box307.bluehost.com"
@@ -221,6 +223,10 @@ if [ $? = 0 ]; then
 fi;
 config checkout
 config config status.showUntrackedFiles no
+fi
+
+if [ -d "/opt/bin" ]; then
+  export PATH=/opt/bin:$PATH
 fi
 
 # pipenv setup
