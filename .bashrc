@@ -1,7 +1,9 @@
 # .bashrc
 
 # User specific aliases and functions
-alias vi=nvim
+if hash nvim 2>/dev/null; then
+	alias vi=nvim
+fi
 alias date=gdate
 alias ls="ls -Fa"
 # alias socks="ssh -D 8080 -f -C -q -N -o ServerAliveInterval=10 pragerws@box307.bluehost.com"
@@ -135,8 +137,6 @@ fi
 alias stopWebLogic='/usr/share/wls12130/user_projects/domains/mydomain/bin/stopWebLogic.sh'
 alias startWebLogic='/usr/share/wls12130/user_projects/domains/mydomain/startWebLogic.sh'
 
-stty -ixon -ixoff
-
 function cfiles {
     find -regextype posix-egrep -regex '.*\.h$|.*\.hpp$|.*\.c$|.*\.cpp|.*\.cc$'
 }
@@ -201,7 +201,7 @@ case "$OSTYPE" in
 	#load iTerm2 shell integration
 	source ~/.iterm2_shell_integration.`basename $SHELL`
     ;;
-  linux*)   echo "LINUX" ;
+  linux*)  # echo "LINUX" ;
 	export PYTHONUSERBASE=`python -m site --user-base`
 	;;
   bsd*)     echo "BSD" ;;
@@ -219,11 +219,19 @@ if [ $? = 0 ]; then
     echo "Backing up pre-existing dot files.";
     config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .config-backup/{}
 fi;
+
 config checkout
 config config status.showUntrackedFiles no
+fi
+
+if [ -d "/opt/bin" ]; then
+  export PATH=/opt/bin:$PATH
 fi
 
 # pipenv setup
 export PATH=$PYTHONUSERBASE/bin:$PATH
 eval "$(pipenv --completion)"
 export GOPATH="$HOME/Projects/BerndsRepo/Go"
+
+stty -ixon -ixoff
+

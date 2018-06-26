@@ -13,8 +13,10 @@ Plugin 'gmarik/Vundle.vim'
 
 " Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
 Plugin 'tmhedberg/SimpylFold'
+if has('python')
 Plugin 'vim-scripts/indentpython.vim'
 Bundle 'Valloric/YouCompleteMe'
+endif
 Plugin 'vim-syntastic/syntastic'
 Plugin 'nvie/vim-flake8'
 Plugin 'jnurmine/Zenburn'
@@ -39,6 +41,7 @@ set encoding=utf-8
 " switch solarized
 call togglebg#map("<F5>")
 
+if has('python')
 "python with virtualenv support
 py << EOF
 import os
@@ -48,6 +51,7 @@ if 'VIRTUAL_ENV' in os.environ:
   activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
   execfile(activate_this, dict(__file__=activate_this))
 EOF
+endif
 
 let python_highlight_all=1
 syntax on
