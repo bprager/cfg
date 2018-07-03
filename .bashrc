@@ -165,6 +165,10 @@ function yank {
     grep "^\s*$@\s" | awk '{print $2}' | sed 's/-\([0-9]*\)-/:\1:/g' | awk -F: '{print $1 " +" $2}' | awk '{print $2 " " $1}' | xargs ${EDITOR:?EDITOR must be set.}
 }
 
+function reportGitActivities {
+	git log --all --format="%h %Cgreen %ci %Cred %cn %Cblue%s"
+}
+
 # keep X working with sudo
 [ -n "$DISPLAY" -a -e "$HOME/.Xauthority" ] && export XAUTHORITY="$HOME/.Xauthority"
 
