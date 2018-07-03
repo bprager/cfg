@@ -166,7 +166,7 @@ function yank {
 }
 
 function reportGitActivities {
-	git log --all --format="%h %Cgreen %ci %Cred %cn %Cblue%s"
+	 git log --all --format="%h %Cgreen %cd %Cred %cn %Cblue%s" --date=short
 }
 
 # keep X working with sudo
