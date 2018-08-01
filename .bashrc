@@ -216,6 +216,15 @@ esac
 # local dotfile configuration
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 mkdir -p .config-backup
+# config checkout
+# avoid conflict
+while [ -f $HOME/.cfg/index.lock ] ; do
+	waitTime = $((1 + RANDOM % 10))
+	echo "wait $waitTime"
+	sleep $waitTime
+done
+
+config config status.showUntrackedFiles no
 config checkout
 if [ $? = 0 ]; then
   echo "Checked out config.";
@@ -224,8 +233,6 @@ if [ $? = 0 ]; then
     config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .config-backup/{}
 fi;
 
-config checkout
-config config status.showUntrackedFiles no
 fi
 
 if [ -d "/opt/bin" ]; then
