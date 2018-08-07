@@ -224,8 +224,9 @@ if [ -f $HOME/.cfg/index.lock ]; then
 fi
 
 while [ -f $HOME/.cfg/index.lock ]; do
-	waitTime = $((1 + RANDOM % 10))
-	echo "wait $waitTime"
+	# wait randomly between 0 and 1 sec
+	waitTime = $(printf '0.%d\n' $RANDOM)
+	echo "wait $waitTime for lock do go away"
 	sleep $waitTime
 done
 
