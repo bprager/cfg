@@ -217,13 +217,13 @@ esac
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 mkdir -p .config-backup
 # config checkout
-# avoid conflict (still checking)
-echo "checking $HOME/.cfg/index.lock"
-if [ -f $HOME/.cfg/index.lock ]; then
-	echo "$HOME/.cfg/index.lock found"
+# avoid conflict (still checking) due multiple git processes
+echo "checking $HOME/.git/*.lock"
+if ls $HOME/.git/*.lock  1> /dev/null 2>&1; then
+	echo "$(ls $HOME/.git/*.lock) found"
 fi
 
-while [ -f $HOME/.cfg/index.lock ]; do
+while $HOME/.git/*.lock  1> /dev/null 2>&1; do
 	# wait randomly between 0 and 1 sec
 	waitTime = $(printf '0.%d\n' $RANDOM)
 	echo "wait $waitTime for lock do go away"
