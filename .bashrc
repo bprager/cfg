@@ -169,6 +169,14 @@ function reportGitActivities {
 	 git log --all --format="%h %Cgreen %cd %Cred %cn %Cblue%s" --date=short
 }
 
+function hex_to_rgb() {
+    # Usage: hex_to_rgb "#FFFFFF"
+    #        hex_to_rgb "000000"
+    : "${1/\#}"
+    ((r=16#${_:0:2},g=16#${_:2:2},b=16#${_:4:2}))
+    printf '%s\n' "$r $g $b"
+}
+
 # keep X working with sudo
 [ -n "$DISPLAY" -a -e "$HOME/.Xauthority" ] && export XAUTHORITY="$HOME/.Xauthority"
 
