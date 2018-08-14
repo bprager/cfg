@@ -226,12 +226,12 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 mkdir -p .config-backup
 # config checkout
 # avoid conflict (still checking) due multiple git processes
-echo "checking $HOME/.git/*.lock"
-if ls $HOME/.git/*.lock  1> /dev/null 2>&1; then
-	echo "$(ls $HOME/.git/*.lock) found"
+echo "checking $HOME/.git/*.lock && $HOME/.cfg/*.lock"
+if ls $HOME/.git/*.lock $HOME/.cfg/*.lock 1> /dev/null 2>&1; then
+	echo "$(ls $HOME/.git/*.lock) or $(ls $HOME/.cfg/*.lock) found"
 fi
 
-while $HOME/.git/*.lock  1> /dev/null 2>&1; do
+while ls $HOME/.git/*.lock $HOME/.cfg/*.lock 1> /dev/null 2>&1; do
 	# wait randomly between 0 and 1 sec
 	waitTime = $(printf '0.%d\n' $RANDOM)
 	echo "wait $waitTime for lock do go away"
