@@ -171,6 +171,18 @@ function yank {
     grep "^\s*$@\s" | awk '{print $2}' | sed 's/-\([0-9]*\)-/:\1:/g' | awk -F: '{print $1 " +" $2}' | awk '{print $2 " " $1}' | xargs ${EDITOR:?EDITOR must be set.}
 }
 
+function reportGitActivities {
+	 git log --all --format="%h %Cgreen %cd %Cred %cn %Cblue%s" --date=short
+}
+
+function hex_to_rgb() {
+    # Usage: hex_to_rgb "#FFFFFF"
+    #        hex_to_rgb "000000"
+    : "${1/\#}"
+    ((r=16#${_:0:2},g=16#${_:2:2},b=16#${_:4:2}))
+    printf '%s\n' "$r $g $b"
+}
+
 # keep X working with sudo
 [ -n "$DISPLAY" -a -e "$HOME/.Xauthority" ] && export XAUTHORITY="$HOME/.Xauthority"
 
@@ -218,6 +230,21 @@ esac
 # local dotfile configuration
 alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 mkdir -p .config-backup
+# config checkout
+# avoid conflict (still checking) due multiple git processes
+echo "checking $HOME/.git/*.lock && $HOME/.cfg/*.lock"
+if ls $HOME/.git/*.lock $HOME/.cfg/*.lock 1> /dev/null 2>&1; then
+	echo "$(ls $HOME/.git/*.lock) or $(ls $HOME/.cfg/*.lock) found"
+fi
+
+while ls $HOME/.git/*.lock $HOME/.cfg/*.lock 1> /dev/null 2>&1; do
+	# wait randomly between 0 and 1 sec
+	waitTime = $(printf '0.%d\n' $RANDOM)
+	echo "wait $waitTime for lock do go away"
+	sleep $waitTime
+done
+
+config config status.showUntrackedFiles no
 config checkout
 if [ $? = 0 ]; then
   echo "Checked out config.";
@@ -226,8 +253,6 @@ if [ $? = 0 ]; then
     config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .config-backup/{}
 fi;
 
-config checkout
-config config status.showUntrackedFiles no
 fi
 
 # pipenv setup
