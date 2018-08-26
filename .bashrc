@@ -1,5 +1,11 @@
 # .bashrc
 
+# add /opt dir to PATH
+if [ -d "/opt/bin" ]; then
+	echo "add /opt/bin to PATH"
+	export PATH=/opt/bin:$PATH
+fi
+
 # User specific aliases and functions
 if hash nvim 2>/dev/null; then
 	alias vi=nvim
@@ -19,7 +25,7 @@ alias mvn='rlwrap mvn'
 alias mail='rlwrap mail'
 
 function config {
-   /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME $@
+   git --git-dir=$HOME/.cfg/ --work-tree=$HOME $@
 }
 
 daysLeftThisMonth() {
@@ -210,7 +216,7 @@ case "$OSTYPE" in
 esac
 
 # local dotfile configuration
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 mkdir -p .config-backup
 config checkout
 if [ $? = 0 ]; then
@@ -222,10 +228,6 @@ fi;
 
 config checkout
 config config status.showUntrackedFiles no
-fi
-
-if [ -d "/opt/bin" ]; then
-  export PATH=/opt/bin:$PATH
 fi
 
 # pipenv setup
