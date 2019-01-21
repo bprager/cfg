@@ -3,6 +3,7 @@ Options: --medium=A4
 Options: --pretty-print
 Options: -2
 Options: --borders yes
+Options: --tabsize=4
 
 # Title of the page is the (short) name of the current file
 # or the first tagged text if there is
