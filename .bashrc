@@ -171,7 +171,8 @@ function yank {
 }
 
 function reportGitActivities {
-	 git log --all --format="%h %Cgreen %cd %Cred %cn %Cblue%s" --date=short
+	 # git log --all --format="%h %Cgreen %cd %Cred %cn %Cblue%s" --date=short
+	 git log --all --format="%Cred%h%Creset %C(blue)%cd -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --date=short
 }
 
 function hex_to_rgb() {
