@@ -217,6 +217,7 @@ case "$OSTYPE" in
   		eval "$(docker-machine env)"
 	fi
 	export PYTHONUSERBASE='/opt/local/Library/Frameworks/Python.framework/Versions/Current'
+	alias pipenv=/Library/Frameworks/Python.framework/Versions/3.7/bin/pipenv
 	#load iTerm2 shell integration
 	source ~/.iterm2_shell_integration.`basename $SHELL`
     ;;
@@ -260,6 +261,14 @@ fi
 export PATH=$PYTHONUSERBASE/bin:$PATH
 eval "$(pipenv --completion)"
 export GOPATH="$HOME/Projects/BerndsRepo/Go"
+
+# Bash completion
+if [ -f /opt/local/etc/bash_completion ]; then
+	. /opt/local/etc/bash_completion
+fi
+
+# Git completion
+source ~/.git-completion.bash
 
 stty -ixon -ixoff
 
