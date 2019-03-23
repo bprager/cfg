@@ -10,7 +10,6 @@ fi
 if hash nvim 2>/dev/null; then
 	alias vi=nvim
 fi
-alias date=gdate
 alias ls="ls -Fa"
 # alias socks="ssh -D 8080 -f -C -q -N -o ServerAliveInterval=10 pragerws@box307.bluehost.com"
 alias socks="ssh -D 8080 -f -C -q -N -o ServerAliveInterval=10 bernd@shell.xshellz.com"
@@ -209,6 +208,7 @@ then
 case "$OSTYPE" in
   solaris*) echo "SOLARIS" ;;
   darwin*)  # echo "OSX";
+	alias date=gdate
 	export CLICOLOR=1;
 	export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD;
 	# get docker env variables
