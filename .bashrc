@@ -268,7 +268,10 @@ if [ -f /opt/local/etc/bash_completion ]; then
 fi
 
 # Git completion
-source ~/.git-completion.bash
+if [ -f ~/.git-completion.bash ]; then
+	source ~/.git-completion.bash
+fi
+
 
 stty -ixon -ixoff
 
