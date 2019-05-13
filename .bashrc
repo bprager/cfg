@@ -216,9 +216,12 @@ case "$OSTYPE" in
 	then
   		eval "$(docker-machine env)"
 	fi
+	export PATH=/opt/local/bin:$PATH
 	export PYTHONUSERBASE='/opt/local/Library/Frameworks/Python.framework/Versions/Current'
 	#load iTerm2 shell integration
 	source ~/.iterm2_shell_integration.`basename $SHELL`
+	# show hidden files
+	defaults write com.apple.finder AppleShowAllFiles YES
     ;;
   linux*)  # echo "LINUX" ;
 	export PYTHONUSERBASE=`python -m site --user-base`
