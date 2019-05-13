@@ -10,7 +10,6 @@ fi
 if hash nvim 2>/dev/null; then
 	alias vi=nvim
 fi
-alias date=gdate
 alias ls="ls -Fa"
 # alias socks="ssh -D 8080 -f -C -q -N -o ServerAliveInterval=10 pragerws@box307.bluehost.com"
 alias socks="ssh -D 8080 -f -C -q -N -o ServerAliveInterval=10 bernd@shell.xshellz.com"
@@ -209,6 +208,7 @@ then
 case "$OSTYPE" in
   solaris*) echo "SOLARIS" ;;
   darwin*)  # echo "OSX";
+	alias date=gdate
 	export CLICOLOR=1;
 	export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD;
 	# get docker env variables
@@ -218,6 +218,7 @@ case "$OSTYPE" in
 	fi
 	export PATH=/opt/local/bin:$PATH
 	export PYTHONUSERBASE='/opt/local/Library/Frameworks/Python.framework/Versions/Current'
+	alias pipenv=/Library/Frameworks/Python.framework/Versions/3.7/bin/pipenv
 	#load iTerm2 shell integration
 	source ~/.iterm2_shell_integration.`basename $SHELL`
 	# show hidden files
@@ -263,6 +264,17 @@ fi
 export PATH=$PYTHONUSERBASE/bin:$PATH
 eval "$(pipenv --completion)"
 export GOPATH="$HOME/Projects/BerndsRepo/Go"
+
+# Bash completion
+if [ -f /opt/local/etc/bash_completion ]; then
+	. /opt/local/etc/bash_completion
+fi
+
+# Git completion
+if [ -f ~/.git-completion.bash ]; then
+	source ~/.git-completion.bash
+fi
+
 
 stty -ixon -ixoff
 
