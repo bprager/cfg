@@ -218,7 +218,7 @@ case "$OSTYPE" in
 	fi
 	export PATH=/opt/local/bin:$PATH
 	export PYTHONUSERBASE='/opt/local/Library/Frameworks/Python.framework/Versions/Current'
-	alias pipenv=/Library/Frameworks/Python.framework/Versions/3.7/bin/pipenv
+	alias pipenv=/opt/local/Library/Frameworks/Python.framework/Versions/Current/bin/pipenv
 	#load iTerm2 shell integration
 	source ~/.iterm2_shell_integration.`basename $SHELL`
 	# show hidden files
@@ -263,7 +263,9 @@ fi
 # pipenv setup
 export PATH=$PYTHONUSERBASE/bin:$PATH
 eval "$(pipenv --completion)"
+# go setup
 export GOPATH="$HOME/Projects/BerndsRepo/Go"
+export PATH=$GOPATH/bin:$PATH
 
 # Bash completion
 if [ -f /opt/local/etc/bash_completion ]; then
