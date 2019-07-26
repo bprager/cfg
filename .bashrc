@@ -232,7 +232,7 @@ alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 mkdir -p .config-backup
 # config checkout
 # avoid conflict (still checking) due multiple git processes
-echo "checking $HOME/.git/*.lock && $HOME/.cfg/*.lock"
+# echo "checking $HOME/.git/*.lock && $HOME/.cfg/*.lock"
 if ls $HOME/.git/*.lock $HOME/.cfg/*.lock 1> /dev/null 2>&1; then
 	echo "$(ls $HOME/.git/*.lock) or $(ls $HOME/.cfg/*.lock) found"
 fi
