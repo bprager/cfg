@@ -79,7 +79,7 @@ export HISTSIZE=1000
 HISTFILESIZE=2000
 export HISTCONTROL=ignoredups
 
-export LIBRARY_PATH=/lib/:/usr/lib/:/usr/local/lib/
+# export LIBRARY_PATH=/lib/:/usr/lib/:/usr/local/lib/
 export LIBDIR=$LIBRARY_PATH
 export LD_LIBRARY_PATH=$LIBRARY_PATH
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig/
@@ -211,11 +211,6 @@ case "$OSTYPE" in
 	alias date=gdate
 	export CLICOLOR=1;
 	export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD;
-	# get docker env variables
-	if [ "$(docker-machine status | tr '[a-z]' '[A-Z]')" == "RUNNING" ]
-	then
-  		eval "$(docker-machine env)"
-	fi
 	export PATH=/opt/local/bin:$PATH
 	export PYTHONUSERBASE='/opt/local/Library/Frameworks/Python.framework/Versions/Current'
 	alias pipenv=/opt/local/Library/Frameworks/Python.framework/Versions/Current/bin/pipenv
@@ -264,8 +259,7 @@ fi
 export PATH=$PYTHONUSERBASE/bin:$PATH
 eval "$(pipenv --completion)"
 # go setup
-export GOPATH="$HOME/Projects/BerndsRepo/Go"
-export PATH=$GOPATH/bin:$PATH
+export PATH=~/go/bin:$PATH
 
 # Bash completion
 if [ -f /opt/local/etc/bash_completion ]; then
