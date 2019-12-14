@@ -258,12 +258,13 @@ fi
 # pipenv setup
 export PATH=$PYTHONUSERBASE/bin:$PATH
 eval "$(pipenv --completion)"
-# go setup
-export PATH=~/go/bin:$PATH
 
 # Bash completion
 if [ -f /opt/local/etc/bash_completion ]; then
 	. /opt/local/etc/bash_completion
+fi
+if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
+	. /opt/local/etc/profile.d/bash_completion.sh
 fi
 
 # Git completion
@@ -271,6 +272,11 @@ if [ -f ~/.git-completion.bash ]; then
 	source ~/.git-completion.bash
 fi
 
+# Go setup
+if [ -f /usr/local/go/bin/go ]; then
+	PATH="/usr/local/go/bin:$PATH"
+	export PATH=~/go/bin:$PATH
+fi
 
 stty -ixon -ixoff
 
