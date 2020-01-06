@@ -55,6 +55,7 @@ export CFLAGS="-march=native"
 export LDFLAGS="$LDFLAGS -L/usr/local/lib"
 
 export PS1="$NM-=[$HI\t$NM][$HI\u$NI@$HI\h $SI\w$NM]=-\n $IN"
+export TZ="Asia/Bangkok"
 # export CVSROOT=":pserver:bernd@prager.homeip.net:/home/cvs"
 
 if hash nvim 2>/dev/null; then
@@ -213,7 +214,6 @@ case "$OSTYPE" in
 	export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD;
 	export PATH=/opt/local/bin:$PATH
 	export PYTHONUSERBASE='/opt/local/Library/Frameworks/Python.framework/Versions/Current'
-	alias pipenv=/opt/local/Library/Frameworks/Python.framework/Versions/Current/bin/pipenv
 	#load iTerm2 shell integration
 	source ~/.iterm2_shell_integration.`basename $SHELL`
 	# show hidden files
