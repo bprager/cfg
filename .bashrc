@@ -212,7 +212,7 @@ case "$OSTYPE" in
 	alias date=gdate
 	export CLICOLOR=1;
 	export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD;
-	export PATH=/opt/local/bin:$PATH
+	export PATH=/usr/local/bin:/opt/local/bin:/opt/local/sbin/:$PATH
 	export PYTHONUSERBASE='/opt/local/Library/Frameworks/Python.framework/Versions/Current'
 	#load iTerm2 shell integration
 	source ~/.iterm2_shell_integration.`basename $SHELL`
