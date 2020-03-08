@@ -10,7 +10,7 @@ fi
 if hash nvim 2>/dev/null; then
 	alias vi=nvim
 fi
-alias ls="ls -Fa"
+alias ls="ls -F"
 # alias socks="ssh -D 8080 -f -C -q -N -o ServerAliveInterval=10 pragerws@box307.bluehost.com"
 alias socks="ssh -D 8080 -f -C -q -N -o ServerAliveInterval=10 bernd@shell.xshellz.com"
 alias folders="ls -R | grep : | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'"
