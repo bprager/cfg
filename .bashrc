@@ -206,13 +206,16 @@ alias scala="export TERM=xterm-color && scala-2.12"
 # if in interactive mode
 if [[ $- == *i* ]]
 then
+# bash wildcard support
+shopt -s extglob
 case "$OSTYPE" in
   solaris*) echo "SOLARIS" ;;
   darwin*)  # echo "OSX";
 	alias date=gdate
 	export CLICOLOR=1;
 	export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD;
-	export PATH=/usr/local/bin:/opt/local/bin:/opt/local/sbin/:$PATH
+	export PYTHONSYSPATH=$(python3 -c "import sys; print('\n'.join(sys.path))")
+	export PATH=/var/root/Library/Python/3.8/bin:/usr/local/bin:/opt/local/bin:/opt/local/sbin/:$PATH
 	export PYTHONUSERBASE='/opt/local/Library/Frameworks/Python.framework/Versions/Current'
 	#load iTerm2 shell integration
 	source ~/.iterm2_shell_integration.`basename $SHELL`

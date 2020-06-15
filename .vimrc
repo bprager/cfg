@@ -1,6 +1,11 @@
 set nocompatible              " required
 filetype off                  " required
 
+" Jump to the last position when reopening a file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -15,7 +20,7 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'tmhedberg/SimpylFold'
 if has('python')
 Plugin 'vim-scripts/indentpython.vim'
-Bundle 'Valloric/YouCompleteMe'
+" Bundle 'Valloric/YouCompleteMe'
 endif
 Plugin 'vim-syntastic/syntastic'
 Plugin 'nvie/vim-flake8'
@@ -29,11 +34,6 @@ Plugin 'vim-airline/vim-airline-themes'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-
-" Jump to the last position when reopening a file
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
 
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 set encoding=utf-8
@@ -62,6 +62,8 @@ else
   colorscheme zenburn
 endif
 
+highlight Comment cterm=italic
+
 augroup AutoSaveFolds
   autocmd!
   autocmd BufWinLeave ?* silent! mkview
@@ -78,6 +80,7 @@ let g:SimpylFold_docstring_preview=1
 au BufEnter /private/tmp/crontab.* setl backupcopy=yes
 autocmd filetype crontab setlocal nobackup nowritebackup
 
+
 " Printing
 set printexpr=PrintFile(v:fname_in)
 function PrintFile(fname)
@@ -86,4 +89,4 @@ function PrintFile(fname)
   return v:shell_error
 endfunc
 
-
+highlight Comment cterm=italic
